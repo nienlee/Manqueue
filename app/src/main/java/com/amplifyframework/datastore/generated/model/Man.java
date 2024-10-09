@@ -29,28 +29,22 @@ public final class Man implements Model {
   public static final ManPath rootPath = new ManPath("root", false, null);
   public static final QueryField ID = field("Man", "id");
   public static final QueryField NUMBER = field("Man", "number");
-  public static final QueryField NAME = field("Man", "name");
-  public static final QueryField AGE = field("Man", "age");
-  public static final QueryField HEIGHT = field("Man", "height");
-  public static final QueryField HR = field("Man", "hr");
-  public static final QueryField SLEEP = field("Man", "sleep");
-  public static final QueryField HRV = field("Man", "hrv");
-  public static final QueryField SPO2 = field("Man", "spo2");
-  public static final QueryField PRESSURE = field("Man", "pressure");
-  public static final QueryField PERIOD = field("Man", "period");
-  public static final QueryField ACTIVITY = field("Man", "activity");
+  public static final QueryField HWVERSION = field("Man", "hwversion");
+  public static final QueryField FWVERSION = field("Man", "fwversion");
+  public static final QueryField MODE = field("Man", "mode");
+  public static final QueryField FUNCTION = field("Man", "function");
+  public static final QueryField PREDVALUE = field("Man", "predvalue");
+  public static final QueryField DATATIME = field("Man", "datatime");
+  public static final QueryField DATAVALUE = field("Man", "datavalue");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String") String number;
-  private final @ModelField(targetType="String") String name;
-  private final @ModelField(targetType="String") String age;
-  private final @ModelField(targetType="String") String height;
-  private final @ModelField(targetType="String") String hr;
-  private final @ModelField(targetType="String") String sleep;
-  private final @ModelField(targetType="String") String hrv;
-  private final @ModelField(targetType="String") String spo2;
-  private final @ModelField(targetType="String") String pressure;
-  private final @ModelField(targetType="String") String period;
-  private final @ModelField(targetType="String") String activity;
+  private final @ModelField(targetType="String") String hwversion;
+  private final @ModelField(targetType="String") String fwversion;
+  private final @ModelField(targetType="String") String mode;
+  private final @ModelField(targetType="String") String function;
+  private final @ModelField(targetType="String") String predvalue;
+  private final @ModelField(targetType="String") String datatime;
+  private final @ModelField(targetType="String") String datavalue;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   /** @deprecated This API is internal to Amplify and should not be used. */
@@ -67,44 +61,32 @@ public final class Man implements Model {
       return number;
   }
   
-  public String getName() {
-      return name;
+  public String getHwversion() {
+      return hwversion;
   }
   
-  public String getAge() {
-      return age;
+  public String getFwversion() {
+      return fwversion;
   }
   
-  public String getHeight() {
-      return height;
+  public String getMode() {
+      return mode;
   }
   
-  public String getHr() {
-      return hr;
+  public String getFunction() {
+      return function;
   }
   
-  public String getSleep() {
-      return sleep;
+  public String getPredvalue() {
+      return predvalue;
   }
   
-  public String getHrv() {
-      return hrv;
+  public String getDatatime() {
+      return datatime;
   }
   
-  public String getSpo2() {
-      return spo2;
-  }
-  
-  public String getPressure() {
-      return pressure;
-  }
-  
-  public String getPeriod() {
-      return period;
-  }
-  
-  public String getActivity() {
-      return activity;
+  public String getDatavalue() {
+      return datavalue;
   }
   
   public Temporal.DateTime getCreatedAt() {
@@ -115,19 +97,16 @@ public final class Man implements Model {
       return updatedAt;
   }
   
-  private Man(String id, String number, String name, String age, String height, String hr, String sleep, String hrv, String spo2, String pressure, String period, String activity) {
+  private Man(String id, String number, String hwversion, String fwversion, String mode, String function, String predvalue, String datatime, String datavalue) {
     this.id = id;
     this.number = number;
-    this.name = name;
-    this.age = age;
-    this.height = height;
-    this.hr = hr;
-    this.sleep = sleep;
-    this.hrv = hrv;
-    this.spo2 = spo2;
-    this.pressure = pressure;
-    this.period = period;
-    this.activity = activity;
+    this.hwversion = hwversion;
+    this.fwversion = fwversion;
+    this.mode = mode;
+    this.function = function;
+    this.predvalue = predvalue;
+    this.datatime = datatime;
+    this.datavalue = datavalue;
   }
   
   @Override
@@ -140,16 +119,13 @@ public final class Man implements Model {
       Man man = (Man) obj;
       return ObjectsCompat.equals(getId(), man.getId()) &&
               ObjectsCompat.equals(getNumber(), man.getNumber()) &&
-              ObjectsCompat.equals(getName(), man.getName()) &&
-              ObjectsCompat.equals(getAge(), man.getAge()) &&
-              ObjectsCompat.equals(getHeight(), man.getHeight()) &&
-              ObjectsCompat.equals(getHr(), man.getHr()) &&
-              ObjectsCompat.equals(getSleep(), man.getSleep()) &&
-              ObjectsCompat.equals(getHrv(), man.getHrv()) &&
-              ObjectsCompat.equals(getSpo2(), man.getSpo2()) &&
-              ObjectsCompat.equals(getPressure(), man.getPressure()) &&
-              ObjectsCompat.equals(getPeriod(), man.getPeriod()) &&
-              ObjectsCompat.equals(getActivity(), man.getActivity()) &&
+              ObjectsCompat.equals(getHwversion(), man.getHwversion()) &&
+              ObjectsCompat.equals(getFwversion(), man.getFwversion()) &&
+              ObjectsCompat.equals(getMode(), man.getMode()) &&
+              ObjectsCompat.equals(getFunction(), man.getFunction()) &&
+              ObjectsCompat.equals(getPredvalue(), man.getPredvalue()) &&
+              ObjectsCompat.equals(getDatatime(), man.getDatatime()) &&
+              ObjectsCompat.equals(getDatavalue(), man.getDatavalue()) &&
               ObjectsCompat.equals(getCreatedAt(), man.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), man.getUpdatedAt());
       }
@@ -160,16 +136,13 @@ public final class Man implements Model {
     return new StringBuilder()
       .append(getId())
       .append(getNumber())
-      .append(getName())
-      .append(getAge())
-      .append(getHeight())
-      .append(getHr())
-      .append(getSleep())
-      .append(getHrv())
-      .append(getSpo2())
-      .append(getPressure())
-      .append(getPeriod())
-      .append(getActivity())
+      .append(getHwversion())
+      .append(getFwversion())
+      .append(getMode())
+      .append(getFunction())
+      .append(getPredvalue())
+      .append(getDatatime())
+      .append(getDatavalue())
       .append(getCreatedAt())
       .append(getUpdatedAt())
       .toString()
@@ -182,16 +155,13 @@ public final class Man implements Model {
       .append("Man {")
       .append("id=" + String.valueOf(getId()) + ", ")
       .append("number=" + String.valueOf(getNumber()) + ", ")
-      .append("name=" + String.valueOf(getName()) + ", ")
-      .append("age=" + String.valueOf(getAge()) + ", ")
-      .append("height=" + String.valueOf(getHeight()) + ", ")
-      .append("hr=" + String.valueOf(getHr()) + ", ")
-      .append("sleep=" + String.valueOf(getSleep()) + ", ")
-      .append("hrv=" + String.valueOf(getHrv()) + ", ")
-      .append("spo2=" + String.valueOf(getSpo2()) + ", ")
-      .append("pressure=" + String.valueOf(getPressure()) + ", ")
-      .append("period=" + String.valueOf(getPeriod()) + ", ")
-      .append("activity=" + String.valueOf(getActivity()) + ", ")
+      .append("hwversion=" + String.valueOf(getHwversion()) + ", ")
+      .append("fwversion=" + String.valueOf(getFwversion()) + ", ")
+      .append("mode=" + String.valueOf(getMode()) + ", ")
+      .append("function=" + String.valueOf(getFunction()) + ", ")
+      .append("predvalue=" + String.valueOf(getPredvalue()) + ", ")
+      .append("datatime=" + String.valueOf(getDatatime()) + ", ")
+      .append("datavalue=" + String.valueOf(getDatavalue()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
@@ -220,9 +190,6 @@ public final class Man implements Model {
       null,
       null,
       null,
-      null,
-      null,
-      null,
       null
     );
   }
@@ -230,64 +197,52 @@ public final class Man implements Model {
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
       number,
-      name,
-      age,
-      height,
-      hr,
-      sleep,
-      hrv,
-      spo2,
-      pressure,
-      period,
-      activity);
+      hwversion,
+      fwversion,
+      mode,
+      function,
+      predvalue,
+      datatime,
+      datavalue);
   }
   public interface BuildStep {
     Man build();
     BuildStep id(String id);
     BuildStep number(String number);
-    BuildStep name(String name);
-    BuildStep age(String age);
-    BuildStep height(String height);
-    BuildStep hr(String hr);
-    BuildStep sleep(String sleep);
-    BuildStep hrv(String hrv);
-    BuildStep spo2(String spo2);
-    BuildStep pressure(String pressure);
-    BuildStep period(String period);
-    BuildStep activity(String activity);
+    BuildStep hwversion(String hwversion);
+    BuildStep fwversion(String fwversion);
+    BuildStep mode(String mode);
+    BuildStep function(String function);
+    BuildStep predvalue(String predvalue);
+    BuildStep datatime(String datatime);
+    BuildStep datavalue(String datavalue);
   }
   
 
   public static class Builder implements BuildStep {
     private String id;
     private String number;
-    private String name;
-    private String age;
-    private String height;
-    private String hr;
-    private String sleep;
-    private String hrv;
-    private String spo2;
-    private String pressure;
-    private String period;
-    private String activity;
+    private String hwversion;
+    private String fwversion;
+    private String mode;
+    private String function;
+    private String predvalue;
+    private String datatime;
+    private String datavalue;
     public Builder() {
       
     }
     
-    private Builder(String id, String number, String name, String age, String height, String hr, String sleep, String hrv, String spo2, String pressure, String period, String activity) {
+    private Builder(String id, String number, String hwversion, String fwversion, String mode, String function, String predvalue, String datatime, String datavalue) {
       this.id = id;
       this.number = number;
-      this.name = name;
-      this.age = age;
-      this.height = height;
-      this.hr = hr;
-      this.sleep = sleep;
-      this.hrv = hrv;
-      this.spo2 = spo2;
-      this.pressure = pressure;
-      this.period = period;
-      this.activity = activity;
+      this.hwversion = hwversion;
+      this.fwversion = fwversion;
+      this.mode = mode;
+      this.function = function;
+      this.predvalue = predvalue;
+      this.datatime = datatime;
+      this.datavalue = datavalue;
     }
     
     @Override
@@ -297,16 +252,13 @@ public final class Man implements Model {
         return new Man(
           id,
           number,
-          name,
-          age,
-          height,
-          hr,
-          sleep,
-          hrv,
-          spo2,
-          pressure,
-          period,
-          activity);
+          hwversion,
+          fwversion,
+          mode,
+          function,
+          predvalue,
+          datatime,
+          datavalue);
     }
     
     @Override
@@ -316,62 +268,44 @@ public final class Man implements Model {
     }
     
     @Override
-     public BuildStep name(String name) {
-        this.name = name;
+     public BuildStep hwversion(String hwversion) {
+        this.hwversion = hwversion;
         return this;
     }
     
     @Override
-     public BuildStep age(String age) {
-        this.age = age;
+     public BuildStep fwversion(String fwversion) {
+        this.fwversion = fwversion;
         return this;
     }
     
     @Override
-     public BuildStep height(String height) {
-        this.height = height;
+     public BuildStep mode(String mode) {
+        this.mode = mode;
         return this;
     }
     
     @Override
-     public BuildStep hr(String hr) {
-        this.hr = hr;
+     public BuildStep function(String function) {
+        this.function = function;
         return this;
     }
     
     @Override
-     public BuildStep sleep(String sleep) {
-        this.sleep = sleep;
+     public BuildStep predvalue(String predvalue) {
+        this.predvalue = predvalue;
         return this;
     }
     
     @Override
-     public BuildStep hrv(String hrv) {
-        this.hrv = hrv;
+     public BuildStep datatime(String datatime) {
+        this.datatime = datatime;
         return this;
     }
     
     @Override
-     public BuildStep spo2(String spo2) {
-        this.spo2 = spo2;
-        return this;
-    }
-    
-    @Override
-     public BuildStep pressure(String pressure) {
-        this.pressure = pressure;
-        return this;
-    }
-    
-    @Override
-     public BuildStep period(String period) {
-        this.period = period;
-        return this;
-    }
-    
-    @Override
-     public BuildStep activity(String activity) {
-        this.activity = activity;
+     public BuildStep datavalue(String datavalue) {
+        this.datavalue = datavalue;
         return this;
     }
     
@@ -387,8 +321,8 @@ public final class Man implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String number, String name, String age, String height, String hr, String sleep, String hrv, String spo2, String pressure, String period, String activity) {
-      super(id, number, name, age, height, hr, sleep, hrv, spo2, pressure, period, activity);
+    private CopyOfBuilder(String id, String number, String hwversion, String fwversion, String mode, String function, String predvalue, String datatime, String datavalue) {
+      super(id, number, hwversion, fwversion, mode, function, predvalue, datatime, datavalue);
       
     }
     
@@ -398,53 +332,38 @@ public final class Man implements Model {
     }
     
     @Override
-     public CopyOfBuilder name(String name) {
-      return (CopyOfBuilder) super.name(name);
+     public CopyOfBuilder hwversion(String hwversion) {
+      return (CopyOfBuilder) super.hwversion(hwversion);
     }
     
     @Override
-     public CopyOfBuilder age(String age) {
-      return (CopyOfBuilder) super.age(age);
+     public CopyOfBuilder fwversion(String fwversion) {
+      return (CopyOfBuilder) super.fwversion(fwversion);
     }
     
     @Override
-     public CopyOfBuilder height(String height) {
-      return (CopyOfBuilder) super.height(height);
+     public CopyOfBuilder mode(String mode) {
+      return (CopyOfBuilder) super.mode(mode);
     }
     
     @Override
-     public CopyOfBuilder hr(String hr) {
-      return (CopyOfBuilder) super.hr(hr);
+     public CopyOfBuilder function(String function) {
+      return (CopyOfBuilder) super.function(function);
     }
     
     @Override
-     public CopyOfBuilder sleep(String sleep) {
-      return (CopyOfBuilder) super.sleep(sleep);
+     public CopyOfBuilder predvalue(String predvalue) {
+      return (CopyOfBuilder) super.predvalue(predvalue);
     }
     
     @Override
-     public CopyOfBuilder hrv(String hrv) {
-      return (CopyOfBuilder) super.hrv(hrv);
+     public CopyOfBuilder datatime(String datatime) {
+      return (CopyOfBuilder) super.datatime(datatime);
     }
     
     @Override
-     public CopyOfBuilder spo2(String spo2) {
-      return (CopyOfBuilder) super.spo2(spo2);
-    }
-    
-    @Override
-     public CopyOfBuilder pressure(String pressure) {
-      return (CopyOfBuilder) super.pressure(pressure);
-    }
-    
-    @Override
-     public CopyOfBuilder period(String period) {
-      return (CopyOfBuilder) super.period(period);
-    }
-    
-    @Override
-     public CopyOfBuilder activity(String activity) {
-      return (CopyOfBuilder) super.activity(activity);
+     public CopyOfBuilder datavalue(String datavalue) {
+      return (CopyOfBuilder) super.datavalue(datavalue);
     }
   }
   

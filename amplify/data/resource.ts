@@ -13,19 +13,18 @@ const schema = a.schema({
       isDone: a.boolean()
     })
     .authorization((allow) => [allow.guest()]),
-  Man: a.model({
-      number: a.string(),
-      name: a.string(),
-      age: a.string(),
-      height: a.string(),
-      hr: a.string(),
-      sleep: a.string(),
-      hrv: a.string(),
-      spo2: a.string(),
-      pressure: a.string(),
-      period: a.string(),
-      activity: a.string()
-      }).authorization(allow => [allow.owner()]),
+
+    Man: a
+      .model({
+        number: a.string(),
+        hwversion: a.string(),
+        fwversion: a.string(),
+        mode: a.string(),
+        function: a.string(),
+        predvalue: a.string(),
+        datatime: a.string(),
+        datavalue: a.string()
+        }).authorization(allow => [allow.owner()]),
 
 
 });

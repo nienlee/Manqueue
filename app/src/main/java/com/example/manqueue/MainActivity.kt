@@ -19,6 +19,7 @@ import com.amplifyframework.core.Amplify
 import android.util.Log
 import androidx.compose.foundation.layout.height
 import com.amplifyframework.api.graphql.model.ModelMutation
+import com.amplifyframework.ui.authenticator.ui.Authenticator
 import com.amplifyframework.datastore.generated.model.Man
 
 class MainActivity : ComponentActivity() {
@@ -31,38 +32,54 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
-                    Column{
-                        Button(onClick = {
-
-                            val man = Man.builder()
-                                .number("AL")
-                                .name("My first man")
-                                .age("10")
-                                .height("173.2F")
-                                .hr("80")
-                                .sleep("good")
-                                .pressure("good")
-                                .period("mid")
-                                .activity("50 steps")
-                                .build()
-
-
-                            Amplify.API.mutate(
-                                ModelMutation.create(man),
-                                { Log.i("MyAmplifyApp", "Added Man with id: ${it.data.id}")},
-                                { Log.e("MyAmplifyApp", "Create failed", it)},
+                    Authenticator { state ->
+                        Column {
+                            Text(
+                                text = "Hello ${state.user.username}!",
                             )
-                        }) {
-                            Text(text = "Create Man")
+
+
+
+                            Button(onClick = {
+
+                                val dataTimeString = "1,499,999"
+                                val dataTimeArray = dataTimeString.split(',').map { it.toInt() }.toString() // 解析为整数 Array
+
+                                val dataValueString = "12000000,14000000,13000000"
+                                val dataValueArray = dataValueString.split(',').map { it.toInt() }.toString() // 解析为整数 Array
+
+                                val gsensorString = "1,1,1"
+                                val gsensorArray = gsensorString.split(',').map { it.toInt() }.toString() // 解析为整数 Array
+
+                                val man = Man.builder()
+                                    .number("ST")
+                                    .hwversion("Ring_V1.0")
+                                    .fwversion("V1.0.0")
+                                    .mode("Calibration")
+                                    .function("BP-PD")
+                                    .predvalue("120")
+                                    .datatime(dataTimeArray) // 使用解析后的整数列表
+                                    .datavalue(dataValueArray) // 使用解析后的整数列表
+                                    .build()
+
+
+                                Amplify.API.mutate(
+                                    ModelMutation.create(man),
+                                    {
+                                        Log.i(
+                                            "MyAmplifyApp",
+                                            "Added Man with id: ${it.data.id}"
+                                        )
+                                    },
+                                    { Log.e("MyAmplifyApp", "Create failed", it) },
+                                )
+                            }) {
+                                Text(text = "Create Man")
+                            }
+
+
                         }
                     }
-
-
-
-
-
-
                 }
             }
         }
