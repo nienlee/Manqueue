@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.height
 import com.amplifyframework.api.graphql.model.ModelMutation
 import com.amplifyframework.ui.authenticator.ui.Authenticator
 import com.amplifyframework.datastore.generated.model.Man
+import com.amplifyframework.datastore.generated.model.ManRequired
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +50,7 @@ class MainActivity : ComponentActivity() {
                                 val dataValueArray = dataValueString.split(',').map { it.toInt() }.toString() // 解析为整数 Array
 
                                 val gsensorString = "1,1,1"
-                                val gsensorArray = gsensorString.split(',').map { it.toInt() }.toString() // 解析为整数 Array
+                                val gsensorArray = gsensorString.split(',').map { it.toInt() } // 解析为整数 Array
 
                                 val man = Man.builder()
                                     .number("ST")
@@ -58,8 +59,8 @@ class MainActivity : ComponentActivity() {
                                     .mode("Calibration")
                                     .function("BP-PD")
                                     .predvalue("120")
-                                    .datatime(dataTimeArray) // 使用解析后的整数列表
-                                    .datavalue(dataValueArray) // 使用解析后的整数列表
+                                    .datatime(dataTimeArray)
+                                    .datavalue(dataValueArray)
                                     .build()
 
 
@@ -75,6 +76,39 @@ class MainActivity : ComponentActivity() {
                                 )
                             }) {
                                 Text(text = "Create Man")
+                            }
+                            Button(onClick = {
+
+                                val dataTimeString = "1,499,999"
+                                val dataTimeArray = dataTimeString.split(',').map { it.toInt() }.toString() // 解析为整数 Array
+
+                                val dataValueString = "12000000,14000000,13000000"
+                                val dataValueArray = dataValueString.split(',').map { it.toInt() }.toString() // 解析为整数 Array
+
+                                val gsensorString = "1,1,1"
+                                val gsensorArray = gsensorString.split(',').map { it.toInt() } // 解析为整数 Array
+
+
+                                val manrequired = ManRequired.builder()
+                                    .time("2024/1/1 08:00")
+                                    .golden("120/80")
+                                    .temperature("25")
+                                    .gsensor(gsensorArray)
+                                    .build()
+
+
+                                Amplify.API.mutate(
+                                    ModelMutation.create(manrequired),
+                                    {
+                                        Log.i(
+                                            "MyAmplifyApp",
+                                            "Added Man with id: ${it.data.id}"
+                                        )
+                                    },
+                                    { Log.e("MyAmplifyApp", "Create failed", it) },
+                                )
+                            }) {
+                                Text(text = "Create ManRequired")
                             }
 
 

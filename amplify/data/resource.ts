@@ -26,7 +26,13 @@ const schema = a.schema({
         datavalue: a.string()
         }).authorization(allow => [allow.owner()]),
 
-
+    ManRequired: a
+          .model({
+            time: a.string().required(),
+            golden: a.string().required(),
+            temperature: a.string().required(),
+            gsensor: a.integer().array()
+            }).authorization(allow => [allow.owner()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
