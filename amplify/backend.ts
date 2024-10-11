@@ -12,7 +12,7 @@ const backend = defineBackend({
   myDynamoDBFunction,
 });
 
-const manTable = backend.data.resources.tables["Man"];
+const manTable = backend.data.resources.tables["CalibrationBPPD"];
 const policy = new Policy(
   Stack.of(manTable),
   "MyDynamoDBFunctionStreamingPolicy",

@@ -14,25 +14,164 @@ const schema = a.schema({
     })
     .authorization((allow) => [allow.guest()]),
 
-    Man: a
+    CalibrationBPPD: a
       .model({
         number: a.string(),
-        hwversion: a.string(),
-        fwversion: a.string(),
-        mode: a.string(),
-        function: a.string(),
-        predvalue: a.string(),
-        datatime: a.string(),
-        datavalue: a.string()
+        hwfw: a.string(),
+        golden: a.integer().array(),
+        datatime: a.integer().array(),
+        datavalue: a.integer().array(),
+        temperature: a.string(),
+        gsensor: a.integer().array(),
+        backup: a.string().default('backup')
         }).authorization(allow => [allow.owner()]),
 
-    ManRequired: a
+    CalibrationBPCIS: a
           .model({
-            time: a.string().required(),
-            golden: a.string().required(),
-            temperature: a.string().required(),
-            gsensor: a.integer().array()
+            number: a.string(),
+            hwfw: a.string(),
+            golden: a.integer().array(),
+            datatime: a.integer().array(),
+            datavalue: a.integer().array(),
+            temperature: a.string(),
+            gsensor: a.integer().array(),
+            backup: a.string().default('backup')
             }).authorization(allow => [allow.owner()]),
+
+    TestBPPD: a
+          .model({
+            number: a.string(),
+            hwfw: a.string(),
+            golden: a.integer().array(),
+            datatime: a.integer().array(),
+            datavalue: a.integer().array(),
+            temperature: a.string(),
+            gsensor: a.integer().array(),
+            backup: a.string().default('backup')
+            }).authorization(allow => [allow.owner()]),
+
+    TestBPCIS: a
+          .model({
+            number: a.string(),
+            hwfw: a.string(),
+            golden: a.integer().array(),
+            datatime: a.integer().array(),
+            datavalue: a.integer().array(),
+            temperature: a.string(),
+            gsensor: a.integer().array(),
+            backup: a.string().default('backup')
+            }).authorization(allow => [allow.owner()]),
+
+    TestHR: a
+          .model({
+            number: a.string(),
+            hwfw: a.string(),
+            golden: a.integer().array(),
+            datatime: a.integer().array(),
+            datavalue: a.integer().array(),
+            temperature: a.string(),
+            gsensor: a.integer().array(),
+            backup: a.string().default('backup')
+            }).authorization(allow => [allow.owner()]),
+
+    TestSPO2: a
+          .model({
+            number: a.string(),
+            hwfw: a.string(),
+            golden: a.integer().array(),
+            datatime: a.integer().array(),
+            datavalue: a.integer().array(),
+            temperature: a.string(),
+            gsensor: a.integer().array(),
+            backup: a.string().default('backup')
+            }).authorization(allow => [allow.owner()]),
+
+
+    TestHRV: a
+          .model({
+            number: a.string(),
+            hwfw: a.string(),
+            golden: a.integer().array(),
+            datatime: a.integer().array(),
+            datavalue: a.integer().array(),
+            temperature: a.string(),
+            gsensor: a.integer().array(),
+            backup: a.string().default('backup')
+            }).authorization(allow => [allow.owner()]),
+
+    TestSleep: a
+          .model({
+            number: a.string(),
+            hwfw: a.string(),
+            golden: a.integer().array(),
+            datatime: a.integer().array(),
+            datavalue: a.integer().array(),
+            temperature: a.string(),
+            gsensor: a.integer().array(),
+            backup: a.string().default('backup')
+            }).authorization(allow => [allow.owner()]),
+
+    TestPressure: a
+          .model({
+            number: a.string(),
+            hwfw: a.string(),
+            golden: a.integer().array(),
+            datatime: a.integer().array(),
+            datavalue: a.integer().array(),
+            temperature: a.string(),
+            gsensor: a.integer().array(),
+            backup: a.string().default('backup')
+            }).authorization(allow => [allow.owner()]),
+
+    TestPeriod: a
+          .model({
+            number: a.string(),
+            hwfw: a.string(),
+            golden: a.integer().array(),
+            datatime: a.integer().array(),
+            datavalue: a.integer().array(),
+            temperature: a.string(),
+            gsensor: a.integer().array(),
+            backup: a.string().default('backup')
+            }).authorization(allow => [allow.owner()]),
+
+    TestActivityStepCalorie: a
+          .model({
+            number: a.string(),
+            hwfw: a.string(),
+            golden: a.integer().array(),
+            datatime: a.integer().array(),
+            datavalue: a.integer().array(),
+            temperature: a.string(),
+            gsensor: a.integer().array(),
+            backup: a.string().default('backup')
+            }).authorization(allow => [allow.owner()]),
+
+    TestBodyTemp: a
+          .model({
+            number: a.string(),
+            hwfw: a.string(),
+            golden: a.integer().array(),
+            datatime: a.integer().array(),
+            datavalue: a.integer().array(),
+            temperature: a.string(),
+            gsensor: a.integer().array(),
+            backup: a.string().default('backup')
+            }).authorization(allow => [allow.owner()]),
+
+    TestRespiration: a
+          .model({
+            number: a.string(),
+            hwfw: a.string(),
+            golden: a.integer().array(),
+            datatime: a.integer().array(),
+            datavalue: a.integer().array(),
+            temperature: a.string(),
+            gsensor: a.integer().array(),
+            backup: a.string().default('backup')
+            }).authorization(allow => [allow.owner()])
+
+
 });
 
 export type Schema = ClientSchema<typeof schema>;
